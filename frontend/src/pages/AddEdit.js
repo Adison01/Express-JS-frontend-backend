@@ -15,7 +15,8 @@ const AddEdit = () => {
   const { name, email, contact } = state;
 
   const navigate = useNavigate();
-  const { id } = useParams;
+  //const history = useLocation();
+  const { id } = useParams();
   useEffect(() => {
     if (id) {
       getSingleUser(id);
@@ -50,7 +51,8 @@ const AddEdit = () => {
         updateUser(state, id);
       }
       setTimeout(() => {
-        // navigate.push("/");
+        navigate.push("/");
+        // history.push("/");
       }, 500);
       // history.push("/");
     }
@@ -79,7 +81,8 @@ const AddEdit = () => {
           name="name"
           placeholder="Enter Name ..."
           onChange={handleInputChange}
-          defaultValue={name}
+          // defaultValue={name}
+          value={name}
         />
         <label htmlFor="email">Email</label>
         <input
@@ -88,7 +91,7 @@ const AddEdit = () => {
           name="email"
           placeholder="Enter Email ..."
           onChange={handleInputChange}
-          defaultValue={email}
+          value={email}
         />
         <label htmlFor="contact">Contact</label>
         <input
@@ -97,7 +100,7 @@ const AddEdit = () => {
           name="contact"
           placeholder="Enter Contact No..."
           onChange={handleInputChange}
-          defaultValue={contact}
+          value={contact}
         />
         <input type="submit" value={id ? "Update" : "Add"} />
       </form>
