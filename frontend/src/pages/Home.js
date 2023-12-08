@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Home.css";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -11,11 +12,20 @@ const Home = () => {
       setData(response.data);
     }
   };
-  const extractData = data[0];
   useEffect(() => {
     getUsers();
   }, []);
-  console.log(extractData);
+
+  const onDeleteUser = async (id) => {
+    if (window.confirm("sure to delete")) {
+      const response = await axios.delete(`http://localhost:5000/user/${id}`);
+      if (response.status === 200) {
+        toast.success(response.data);
+        getUsers();
+      }
+    }
+  };
+
   return (
     <div style={{ marginTop: "150px" }}>
       <table className="styled-table">
@@ -34,14 +44,19 @@ const Home = () => {
               return (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>{item[0].name}</td>
-                  <td>{item[0].email}</td>
-                  <td>{item[0].contact}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.contact}</td>
                   <td>
                     <Link to={`/update/${item.id}`}>
                       <button className="btn btn-edit">Edit</button>
                     </Link>
-                    <button className="btn btn-delete">Delete</button>
+                    <button
+                      className="btn btn-delete"
+                      onClick={() => onDeleteUser(item.id)}
+                    >
+                      Delete
+                    </button>
                     <Link to={`/view/${item.id}`}>
                       <button className="btn btn-view">View</button>
                     </Link>

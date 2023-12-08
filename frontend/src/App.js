@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import {} from "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Home from "./pages/Home";
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-        <ToastContainer />
+        <ToastContainer position="top-center" />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddEdit />} />
