@@ -5,7 +5,7 @@ import "./View.css";
 const View = () => {
   const [user, setUser] = useState(null);
 
-  const { id } = useParams;
+  const { id } = useParams();
   useEffect(() => {
     if (id) {
       getSingleUser(id);
