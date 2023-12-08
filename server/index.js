@@ -18,5 +18,6 @@ app.all("*", (req, res) => res.send("that route does not exist"));
 
 app.listen(port, () => console.log(`server is listening on port: ${port}`));
 
+//https://www.youtube.com/watch?v=qrxTyDDfp0I&t=627s this course video
 //https://www.youtube.com/watch?v=BN0_vb8JGEc
 //this is for sequalizer
